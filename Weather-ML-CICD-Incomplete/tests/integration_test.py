@@ -1,4 +1,9 @@
 import unittest
+import sys
+import os
+
+# Ensure app.py is discoverable
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from app import app  # Import your Flask app instance
 
 class TestModelAppIntegration(unittest.TestCase):
@@ -28,6 +33,8 @@ class TestModelAppIntegration(unittest.TestCase):
 
         # Decode HTML and check for valid prediction class
         html_text = response.data.decode('utf-8').lower()
+        print("Response HTML:", html_text)  # Helpful for debugging
+
         valid_classes = [
             'clear', 'cloudy', 'drizzly', 'foggy', 'hazey',
             'misty', 'rainy', 'smokey', 'thunderstorm'
