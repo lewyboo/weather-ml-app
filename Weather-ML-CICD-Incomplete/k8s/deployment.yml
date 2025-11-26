@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: weather-app
 spec:
-  replicas: 3  # For task (e) scaling
+  replicas: 3
   selector:
     matchLabels:
       app: weather-app
@@ -13,8 +13,8 @@ spec:
         app: weather-app
     spec:
       containers:
-      - name: weather-app
-        image: lewyboo/weather-app:latest
-        ports:
-        - containerPort: 5000
+        - name: weather-app
+          image: lewyboo/weather-ml-app:latest
+          ports:
+            - containerPort: 5000
 
