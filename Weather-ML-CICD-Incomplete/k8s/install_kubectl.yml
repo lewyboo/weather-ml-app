@@ -12,5 +12,6 @@
       command: kubectl version --client
       register: kubectl_version
 
-    - debug:
-        msg: "Kubectl installed successfully: {{ kubectl_version.stdout }}"
+    - name: Show kubectl version
+      debug:
+        msg: "{{ kubectl_version.stdout }}"
