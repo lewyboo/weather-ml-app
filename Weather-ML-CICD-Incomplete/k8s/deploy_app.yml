@@ -3,7 +3,7 @@
   become: yes
   tasks:
     - name: Apply deployment manifest
-      command: kubectl apply -f /home/ubuntu/k8s/deployment.yaml
+      command: kubectl apply -f /home/ubuntu/weather-ml-app/Weather-ML-CICD-Incomplete/k8s/deployment.yaml
       register: deploy_output
 
     - name: Show deployment result
@@ -11,7 +11,7 @@
         msg: "{{ deploy_output.stdout }}"
 
     - name: Apply service manifest
-      command: kubectl apply -f /home/ubuntu/k8s/service.yaml
+      command: kubectl apply -f /home/ubuntu/weather-ml-app/Weather-ML-CICD-Incomplete/k8s/service.yaml
       register: service_output
 
     - name: Show service result
@@ -25,3 +25,4 @@
     - name: Show scaling result
       debug:
         msg: "{{ scale_output.stdout }}"
+
