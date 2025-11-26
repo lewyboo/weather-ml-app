@@ -14,6 +14,7 @@ spec:
     spec:
       containers:
       - name: weather-app
-        image: your-dockerhub-username/weather-app:latest
+        image: lewyboo/weather-app:latest
         ports:
         - containerPort: 5000
+
