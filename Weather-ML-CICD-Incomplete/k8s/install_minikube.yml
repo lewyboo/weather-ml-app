@@ -12,5 +12,6 @@
       command: minikube start --driver=docker
       register: minikube_output
 
-    - debug:
-        msg: "Minikube started successfully: {{ minikube_output.stdout }}"
+    - name: Show Minikube startup output
+      debug:
+        msg: "{{ minikube_output.stdout }}"
