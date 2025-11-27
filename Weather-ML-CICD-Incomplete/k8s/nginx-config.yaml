@@ -1,26 +1,23 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: ConfigMap
 metadata:
-  name: nginx-proxy
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: nginx-proxy
-  template:
-    metadata:
-      labels:
-        app: nginx-proxy
-    spec:
-      containers:
-      - name: nginx
-        image: nginx:latest
-        ports:
-        - containerPort: 5000
-        volumeMounts:
-        - name: nginx-config-volume
-          mountPath: /etc/nginx/conf.d
-      volumes:
-      - name: nginx-config-volume
-        configMap:
-          name: nginx-config
+  name: nginx-config
+data:
+  weather.conf: |
+    server {
+        # Explicitly listen on port 5000 for both IPv4 and IPv6
+        listen 5000;
+        listen [::]:5000;
+        server_name _;
+
+        location / {
+            # Preserve important headers
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+
+            # Forward traffic to the weather app service
+            proxy_pass http://weather-app-service:5000;
+        }
+    }
