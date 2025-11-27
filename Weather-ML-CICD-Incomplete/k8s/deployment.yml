@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: weather-app
+  labels:
+    app: weather-app
 spec:
   replicas: 3
   selector:
@@ -17,4 +19,5 @@ spec:
           image: lewyboo/weather-ml-app:latest
           ports:
             - containerPort: 5000
+
 
