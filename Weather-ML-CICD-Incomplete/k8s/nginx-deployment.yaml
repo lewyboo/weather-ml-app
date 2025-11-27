@@ -17,6 +17,7 @@ spec:
         image: nginx:latest
         ports:
         - containerPort: 5000
+          hostPort: 5000   # 👈 this line binds EC2:5000 directly to the pod
         volumeMounts:
         - name: nginx-config-volume
           mountPath: /etc/nginx/conf.d
