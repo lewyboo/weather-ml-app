@@ -2,7 +2,7 @@
   hosts: localhost
   become: yes
   environment:
-  KUBECONFIG: "{{ lookup('env','HOME') }}/.kube/config"
+    KUBECONFIG: "{{ lookup('env','HOME') }}/.kube/config"
   tasks:
     - name: Apply deployment manifest
       command: kubectl apply -f /home/ubuntu/weather-ml-app/Weather-ML-CICD-Incomplete/k8s/deployment.yml
