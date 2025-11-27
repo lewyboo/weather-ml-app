@@ -8,8 +8,9 @@ spec:
     app: weather-app
   ports:
     - protocol: TCP
-      port: 80
+      port: 5000
       targetPort: 5000
       nodePort: 30007
+
 
 
