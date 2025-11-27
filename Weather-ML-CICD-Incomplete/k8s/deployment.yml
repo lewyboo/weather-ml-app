@@ -16,8 +16,9 @@ spec:
     spec:
       containers:
         - name: weather-app
-          image: lewyboo/weather-ml-app:latest
+          image: schnumph/weather-ml-app:latest
           ports:
             - containerPort: 5000
+
 
 
