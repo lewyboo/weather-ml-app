@@ -1,24 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: weather-app
-  labels:
-    app: weather-app
+  name: weather-ml-deployment
 spec:
   replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
   selector:
     matchLabels:
-      app: weather-app
+      app: weather-ml-app
   template:
     metadata:
       labels:
-        app: weather-app
+        app: weather-ml-app
     spec:
       containers:
-        - name: weather-app
-          image: schnumph/weather-ml-app:latest
-          ports:
-            - containerPort: 5000
-
+      - name: weather-ml-container
+        image: schnumph/weather-ml-app:latest
+        ports:
+        - containerPort: 5000
 
 
