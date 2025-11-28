@@ -22,5 +22,7 @@ spec:
         image: schnumph/weather-ml-app:latest
         ports:
         - containerPort: 5000
+        hostport 5000
+
 
 
