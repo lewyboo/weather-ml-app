@@ -20,20 +20,24 @@ jobs:
         python-version: '3.10'
 
     - name: Install dependencies
+      working-directory: Weather-ML-CICD-Incomplete
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
     - name: Run tests
+      working-directory: Weather-ML-CICD-Incomplete
       run: |
         pytest tests/test_app.py
         pytest tests/test_model.py
         pytest tests/test_routes.py
 
     - name: Build Docker image
+      working-directory: Weather-ML-CICD-Incomplete
       run: |
         docker build -t weather-ml-app:ci-test .
 
     - name: Run container sanity check
       run: |
         docker run --rm weather-ml-app:ci-test python -c "print('Container launched successfully')"
+
