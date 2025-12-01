@@ -19,6 +19,7 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
     - name: Build Docker image
+      working-directory: Weather-ML-CICD-Incomplete
       run: |
         docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/weather-ml-app:latest .
 
