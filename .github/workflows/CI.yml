@@ -28,9 +28,9 @@ jobs:
     - name: Run tests
       working-directory: Weather-ML-CICD-Incomplete
       run: |
-        pytest tests/test_app.py
-        pytest tests/test_model.py
-        pytest tests/test_routes.py
+        pytest tests/integration_test.py
+        pytest tests/smoke_test.py
+        pytest tests/unit_test.py
 
     - name: Build Docker image
       run: |
