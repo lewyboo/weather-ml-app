@@ -1,0 +1,30 @@
+- name: Deploy weather app to Kubernetes
+  hosts: localhost
+  become: yes
+  environment:
+    KUBECONFIG: "{{ lookup('env','HOME') }}/.kube/config"
+  tasks:
+    - name: Apply deployment manifest
+      command: kubectl apply -f /home/ubuntu/weather-ml-app/Weather-ML-CICD-Incomplete/k8s/deployment.yml
+      register: deploy_output
+
+    - name: Show deployment result
+      debug:
+        msg: "{{ deploy_output.stdout }}"
+
+    - name: Apply service manifest
+      command: kubectl apply -f /home/ubuntu/weather-ml-app/Weather-ML-CICD-Incomplete/k8s/service.yml
+      register: service_output
+
+    - name: Show service result
+      debug:
+        msg: "{{ service_output.stdout }}"
+
+    - name: Scale deployment to 3 replicas
+      command: kubectl scale deployment weather-app --replicas=3
+      register: scale_output
+
+    - name: Show scaling result
+      debug:
+        msg: "{{ scale_output.stdout }}"
+
