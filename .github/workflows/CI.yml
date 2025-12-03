@@ -28,6 +28,7 @@ jobs:
     - name: Run tests
       working-directory: Weather-ML-CICD-Incomplete
       run: |
+        export PYTHONPATH=$PWD
         pytest tests/integration_test.py
         pytest tests/smoke_test.py
         pytest tests/unit_test.py
